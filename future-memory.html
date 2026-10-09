@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Future Memory 📸</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+
+            background: linear-gradient(
+                135deg,
+                #16002b,
+                #42106b,
+                #18002e
+            );
+
+            color: white;
+            text-align: center;
+
+            padding: 25px 15px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: auto;
+
+            background: rgba(255,255,255,0.10);
+
+            backdrop-filter: blur(15px);
+
+            padding: 25px;
+
+            border-radius: 25px;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        h1 {
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #ddd;
+            line-height: 1.5;
+        }
+
+        video,
+        canvas {
+            width: 100%;
+            max-width: 450px;
+
+            border-radius: 20px;
+
+            margin-top: 20px;
+
+            background: #000;
+        }
+
+        canvas {
+            display: none;
+        }
+
+        button {
+            margin: 10px 5px;
+
+            padding: 13px 22px;
+
+            border: none;
+
+            border-radius: 15px;
+
+            background: #e056fd;
+
+            color: white;
+
+            font-size: 16px;
+
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #c445e8;
+        }
+
+        #savedPhoto {
+            width: 100%;
+            max-width: 450px;
+
+            margin-top: 20px;
+
+            border-radius: 20px;
+
+            display: none;
+        }
+
+        #message {
+            margin-top: 15px;
+
+            font-size: 18px;
+
+            font-weight: bold;
+        }
+
+        .memory-title {
+            margin-top: 20px;
+
+            font-size: 22px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1>📸 Future Memory</h1>
+
+        <p class="subtitle">
+            Take a picture and save this moment for your future self. 💜
+        </p>
+
+
+        <video id="camera" autoplay playsinline></video>
+
+        <canvas id="canvas"></canvas>
+
+
+        <div>
+
+            <button onclick="startCamera()">
+                📷 Open Camera
+            </button>
+
+            <button onclick="takePicture()">
+                📸 Take Picture
+            </button>
+
+        </div>
+
+
+        <img id="savedPhoto">
+
+
+        <div id="message"></div>
+
+
+        <div id="memoryInfo"></div>
+
+
+        <button onclick="goBack()">
+            🏠 Back to Adventure
+        </button>
+
+    </div>
+
+
+    <script>
+
+        const video = document.getElementById("camera");
+
+        const canvas = document.getElementById("canvas");
+
+        const savedPhoto = document.getElementById("savedPhoto");
+
+        let stream;
+
+
+        async function startCamera() {
+
+            try {
+
+                stream =
+                    await navigator.mediaDevices.getUserMedia({
+                        video: true,
+                        audio: false
+                    });
+
+                video.srcObject = stream;
+
+                document.getElementById("message").innerText =
+                    "Camera ready! 😊📸";
+
+            }
+
+            catch (error) {
+
+                document.getElementById("message").innerText =
+                    "Camera permission allow cheyyali 📷";
+
+            }
+
+        }
+
+
+        function takePicture() {
+
+            if (!video.srcObject) {
+
+                document.getElementById("message").innerText =
+                    "First Open Camera 📷";
+
+                return;
+            }
+
+
+            canvas.width = video.videoWidth;
+
+            canvas.height = video.videoHeight;
+
+
+            const context = canvas.getContext("2d");
+
+            context.drawImage(
+                video,
+                0,
+                0,
+                canvas.width,
+                canvas.height
+            );
+
+
+            const photo =
+                canvas.toDataURL("image/png");
+
+
+            savedPhoto.src = photo;
+
+            savedPhoto.style.display = "block";
+
+
+            const now = new Date();
+
+            const date =
+                now.toLocaleDateString();
+
+            const time =
+                now.toLocaleTimeString();
+
+
+            document.getElementById("message").innerText =
+                "✨ Future Memory Saved! ✨";
+
+
+            document.getElementById("memoryInfo").innerHTML =
+
+                `<div class="memory-title">
+                    💜 Future Memory #01
+                </div>
+
+                <p>
+                    📅 ${date}<br>
+                    ⏰ ${time}
+                </p>
+
+                <p>
+                    "A moment to remember forever." 🥰
+                </p>`;
+
+        }
+
+
+        function goBack() {
+
+            if (stream) {
+
+                stream.getTracks().forEach(track => {
+                    track.stop();
+                });
+
+            }
+
+            window.location.href =
+                "page2.html";
+
+        }
+setTimeout(() => {
+
+    window.location.href = "final.html";
+
+}, 2000);
+    </script>
+
+</body>
+</html>

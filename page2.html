@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Birthday Adventure 🎂</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #16002f, #3b0878, #12002b);
+            color: white;
+            text-align: center;
+            padding: 30px 15px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .title {
+            font-size: 42px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #eadcff;
+            margin-bottom: 35px;
+        }
+
+        .welcome {
+            background: rgba(255, 255, 255, 0.12);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .welcome h2 {
+            color: #ffd6ff;
+            margin-bottom: 10px;
+        }
+
+        .map {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: rgba(255, 255, 255, 0.13);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 22px;
+            padding: 25px 18px;
+            transition: 0.3s;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-8px) scale(1.02);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .emoji {
+            font-size: 45px;
+            margin-bottom: 12px;
+        }
+
+        .card h3 {
+            margin-bottom: 8px;
+            font-size: 21px;
+        }
+
+        .card p {
+            color: #e8dfff;
+            font-size: 14px;
+            margin-bottom: 18px;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            background: linear-gradient(90deg, #ff4ecd, #8b5cf6);
+            padding: 11px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+        }
+
+        .coming {
+            opacity: 0.75;
+        }
+
+        .footer {
+            margin-top: 40px;
+            color: #d8c8ff;
+            font-size: 14px;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 22px;
+            animation: float 5s linear infinite;
+            opacity: 0.7;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            from {
+                transform: translateY(100vh);
+            }
+
+            to {
+                transform: translateY(-100vh);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .title {
+                font-size: 32px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h1 class="title">🎂 Birthday Adventure 🎂</h1>
+
+        <p class="subtitle">
+            A little journey filled with memories, fun & surprises 💜
+        </p>
+
+        <div class="welcome">
+            <h2>✨ Welcome, chinnoduuu! ✨</h2>
+            <p>
+                Your secret surprise has been unlocked!
+                Now let's explore your special birthday adventure. 🎁
+            </p>
+        </div>
+
+        <div class="map">
+
+            <!-- Memories -->
+            <div class="card">
+                <div class="emoji">📸</div>
+                <h3>Memory Lane</h3>
+                <p>Explore special photos and write the memories behind them.</p>
+                <a href="memories.html" class="btn">Open Memory Lane</a>
+            </div>
+
+            <!-- Quiz -->
+            <div class="card">
+                <div class="emoji">❓</div>
+                <h3>How Well Do You Know Me?</h3>
+                <p>Answer some fun questions and see your score!</p>
+                <a href="quiz.html" class="btn">Start Quiz</a>
+            </div>
+
+            <!-- Memory Match -->
+            <div class="card">
+                <div class="emoji">🃏</div>
+                <h3>Memory Match</h3>
+                <p>Match the hidden photo pairs and become the Memory Master!</p>
+                <a href="memory-match.html" class="btn">Play Game</a>
+            </div>
+
+            <!-- Catch Hearts -->
+            <div class="card">
+                <div class="emoji">❤️</div>
+                <h3>Catch the Hearts</h3>
+                <p>Catch the falling hearts before the timer runs out!</p>
+                <a href="catch-hearts.html" class="btn">Play Game</a>
+            </div>
+
+            <!-- Future Memory -->
+            <div class="card">
+                <div class="emoji">📷</div>
+                <h3>Future Memory</h3>
+                <p>Take a selfie and create a memory for the future.</p>
+                <a href="future-memory.html" class="btn">Create Memory</a>
+            </div>
+
+            <!-- Final Surprise -->
+            <div class="card coming">
+                <div class="emoji">🎁</div>
+                <h3>Final Surprise</h3>
+                <p>Something special is waiting at the end of the adventure...</p>
+                <a href="final.html" class="btn">Locked 🔒</a>
+            </div>
+
+        </div>
+
+        <div class="footer">
+            Made with 💜 specially for a beautiful birthday memory ✨
+        </div>
+
+    </div>
+
+    <!-- Floating Hearts -->
+    <div class="heart" style="left:10%; animation-delay:0s;">💜</div>
+    <div class="heart" style="left:25%; animation-delay:2s;">❤️</div>
+    <div class="heart" style="left:45%; animation-delay:1s;">💗</div>
+    <div class="heart" style="left:70%; animation-delay:3s;">💜</div>
+    <div class="heart" style="left:90%; animation-delay:1.5s;">❤️</div>
+
+</body>
+</html>

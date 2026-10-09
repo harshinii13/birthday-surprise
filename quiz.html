@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How Well Do You Know Us? 💜</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #16002b, #3b1266, #18002e);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            background: rgba(255, 255, 255, 0.12);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.4);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #ddd;
+            margin-bottom: 30px;
+        }
+
+        .question {
+            font-size: 22px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            line-height: 1.4;
+        }
+
+        .option {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.15);
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: 0.3s;
+        }
+
+        .option:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.02);
+        }
+
+        .option.selected {
+            background: #9b59b6;
+        }
+
+        #nextBtn,
+        #restartBtn,
+        .backBtn {
+            width: 100%;
+            padding: 15px;
+            margin-top: 20px;
+            border: none;
+            border-radius: 15px;
+            background: #e056fd;
+            color: white;
+            font-size: 17px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        #nextBtn:hover,
+        #restartBtn:hover,
+        .backBtn:hover {
+            background: #c445e8;
+        }
+
+        #result {
+            display: none;
+            text-align: center;
+        }
+
+        #result h2 {
+            font-size: 30px;
+        }
+
+        #score {
+            font-size: 24px;
+            margin: 20px;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 25px;
+            animation: float 5s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div id="quiz">
+
+            <h1>💜 How Well Do You Know Us? 💜</h1>
+
+            <p class="subtitle" id="progress"></p>
+
+            <div class="question" id="question"></div>
+
+            <div id="options"></div>
+
+            <button id="nextBtn" onclick="nextQuestion()">
+                Next 💕
+            </button>
+
+        </div>
+
+
+        <div id="result">
+
+            <h1>🎉 Quiz Completed! 🎉</h1>
+
+            <h2>💜 Your Result 💜</h2>
+
+            <div id="score"></div>
+
+            <p id="message"></p>
+
+            <button id="restartBtn" onclick="restartQuiz()">
+                Play Again 🔄
+            </button>
+
+            <button class="backBtn" onclick="goBack()">
+                🏠 Back to Birthday Adventure
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        const questions = [
+
+            {
+                question: "Natho matladali anukuna date enti? 💜",
+                options: [
+                    "16 Oct 2024",
+                    "13 Oct 2024",
+                    "16 Oct 2023",
+                    "17 Oct 2024"
+                ],
+                answer: 1
+            },
+
+            {
+                question: "Mana first meet ayindhi ekkada? 💕",
+                options: [
+                    "College",
+                    "Bus",
+                    "Bus stand",
+                    "Phone"
+                ],
+                answer: 2
+            },
+
+            {
+                question: "Mana best memorable day enti? ✨",
+                options: [
+                    "21 Feb 2026",
+                    "16 Oct 2024",
+                    "13 Oct 2024",
+                    "17 Oct 2024"
+                ],
+                answer: 0
+            },
+
+            {
+                question: "What is more valuable to you? 💖",
+                options: [
+                    "Money",
+                    "Me",
+                    "Moments with me",
+                    "Expensive things"
+                ],
+                answer: 2
+            },
+
+            {
+                question: "Mana friendship lo most unexpected thing enti? ✨",
+                options: [
+                    "First meet avvadam",
+                    "Daily matladukovadam",
+                    "Intha close avvadam",
+                    "Anni sudden ga jarigipovadam"
+                ],
+                answer: 2
+            }
+
+        ];
+
+
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswer = null;
+
+
+        function loadQuestion() {
+
+            selectedAnswer = null;
+
+            const q = questions[currentQuestion];
+
+            document.getElementById("progress").innerText =
+                `Question ${currentQuestion + 1} of ${questions.length}`;
+
+            document.getElementById("question").innerText =
+                q.question;
+
+            const optionsDiv = document.getElementById("options");
+
+            optionsDiv.innerHTML = "";
+
+            q.options.forEach((option, index) => {
+
+                const button = document.createElement("button");
+
+                button.className = "option";
+
+                button.innerText = option;
+
+                button.onclick = function() {
+
+    selectedAnswer = index;
+
+    document.querySelectorAll(".option")
+        .forEach(btn => {
+            btn.disabled = true;
+        });
+
+    if (index === q.answer) {
+
+        button.style.background = "green";
+        button.innerText = option + " ✅";
+
+    } else {
+
+        button.style.background = "red";
+        button.innerText = option + " ❌";
+
+        // Correct answer ni green lo chupinchadam
+        document.querySelectorAll(".option")[q.answer].style.background = "green";
+        document.querySelectorAll(".option")[q.answer].innerText =
+            q.options[q.answer] + " ✅";
+    }
+};
+                optionsDiv.appendChild(button);
+
+            });
+
+        }
+
+
+        function nextQuestion() {
+
+            if (selectedAnswer === null) {
+                alert("Please select an answer 💜");
+                return;
+            }
+
+            if (selectedAnswer === questions[currentQuestion].answer) {
+                score++;
+            }
+
+            currentQuestion++;
+
+            if (currentQuestion < questions.length) {
+
+                loadQuestion();
+
+            } else {
+
+                window.location.href="memory-match.html"
+
+            }
+
+        }
+
+
+        function showResult() {
+
+            document.getElementById("quiz").style.display = "none";
+
+            document.getElementById("result").style.display = "block";
+
+            document.getElementById("score").innerText =
+                `You scored ${score} / ${questions.length} 💕`;
+
+
+            let message = "";
+
+            if (score === 5) {
+
+                message = "🥹 Perfect! You really know our story! 💜✨";
+
+            } else if (score >= 3) {
+
+                message = "😍 Almost perfect! Our memories are special! 💕";
+
+            } else {
+
+                message = "😄 We need to create more memories together! 💜";
+
+            }
+
+            document.getElementById("message").innerText = message;
+
+        }
+
+
+        function restartQuiz() {
+
+            currentQuestion = 0;
+
+            score = 0;
+
+            document.getElementById("quiz").style.display = "block";
+
+            document.getElementById("result").style.display = "none";
+
+            loadQuestion();
+
+        }
+
+
+        function goBack() {
+
+            window.location.href = "page2.html";
+
+        }
+
+
+        // Floating hearts ❤️
+
+        function createHeart() {
+
+            const heart = document.createElement("div");
+
+            heart.className = "heart";
+
+            heart.innerText = "💜";
+
+            heart.style.left = Math.random() * 100 + "vw";
+
+            heart.style.animationDuration =
+                (3 + Math.random() * 3) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+
+        }
+
+        setInterval(createHeart, 700);
+
+
+        // Start quiz
+        loadQuestion();
+
+    </script>
+
+</body>
+</html>

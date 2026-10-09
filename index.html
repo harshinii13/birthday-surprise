@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>A Secret Surprise 🎁</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #12001f, #2b064d, #090014);
+      color: white;
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      width: 90%;
+      max-width: 500px;
+      padding: 35px 25px;
+      border-radius: 25px;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(15px);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 0 40px rgba(255, 0, 200, 0.25);
+    }
+
+    .lock {
+      font-size: 65px;
+      margin-bottom: 15px;
+      animation: float 2s infinite ease-in-out;
+    }
+
+    h1 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .subtitle {
+      color: #ddd;
+      font-size: 15px;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      outline: none;
+      border-radius: 30px;
+      text-align: center;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+
+    button {
+      border: none;
+      padding: 14px 30px;
+      border-radius: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      background: white;
+      color: #6a0dad;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 25px rgba(255,255,255,0.5);
+    }
+
+    #message {
+      margin-top: 20px;
+      font-size: 15px;
+      min-height: 25px;
+    }
+
+    .success {
+      animation: pop 0.6s ease;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(-10px);
+      }
+    }
+
+    @keyframes pop {
+      0% {
+        transform: scale(0.5);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: fall linear infinite;
+      opacity: 0.7;
+    }
+
+    @keyframes fall {
+      from {
+        transform: translateY(-100px);
+      }
+      to {
+        transform: translateY(110vh);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Floating hearts -->
+  <div class="heart" style="left:10%; animation-duration:7s;">♡</div>
+  <div class="heart" style="left:25%; animation-duration:5s;">♥</div>
+  <div class="heart" style="left:45%; animation-duration:8s;">♡</div>
+  <div class="heart" style="left:65%; animation-duration:6s;">♥</div>
+  <div class="heart" style="left:85%; animation-duration:9s;">♡</div>
+
+  <div class="container">
+
+    <div class="lock">🔐</div>
+
+    <h1>A Secret Surprise Awaits...</h1>
+
+    <p class="subtitle">
+      Someone special created something just for you. 💌<br>
+      But first... let's make sure it's really you. 👀
+    </p>
+
+    <input
+      type="text"
+      id="nameInput"
+      placeholder="Enter your name..."
+    >
+
+    <button onclick="unlockSurprise()">
+      🔓 Unlock My Surprise
+    </button>
+
+    <p id="message"></p>
+
+  </div>
+
+  <script>
+
+    function unlockSurprise() {
+
+      const name = document.getElementById("nameInput").value.trim();
+      const message = document.getElementById("message");
+
+      /*
+        CHANGE THIS NAME
+        to the birthday person's name.
+      */
+      const correctName = "chinnodu";
+
+      if (name.toLowerCase() === correctName.toLowerCase()) {
+
+        message.innerHTML = "✨ Access Granted! Your surprise is waiting... 🎁";
+        message.style.color = "#ffd6ff";
+        message.classList.add("success");
+
+        setTimeout(() => {
+
+          /*
+            Later we will create page2.html
+            and this will open it.
+          */
+
+          window.location.href = "page2.html";
+
+        }, 2000);
+
+      } else {
+
+        message.innerHTML = "Hmm... that's not the secret name 😜 Try again!";
+        message.style.color = "#ffb6c1";
+
+      }
+    }
+
+  </script>
+
+</body>
+</html>

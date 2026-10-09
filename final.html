@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Final Surprise 🎁</title>
+
+    <style>
+        * {
+            .gift {
+    font-size: 90px;
+    cursor: pointer;
+    animation: bounce 1.5s infinite;
+    transition: transform 0.5s;
+}
+
+.gift:hover {
+    transform: scale(1.1);
+}
+
+.gift-text {
+    font-size: 16px;
+    color: #8b3a8f;
+    margin-top: 8px;
+    font-weight: bold;
+}
+
+.hidden {
+    display: none;
+}
+
+.reveal {
+    display: block;
+    animation: revealMessage 1.5s ease;
+}
+
+@keyframes revealMessage {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #f3d9ff, #ffd6ec, #e5d4ff);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 25px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 850px;
+            background: rgba(255, 255, 255, 0.35);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 35px 25px;
+            box-shadow: 0 10px 40px rgba(100, 50, 120, 0.2);
+            text-align: center;
+        }
+
+        .gift {
+            font-size: 80px;
+            animation: bounce 1.5s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+        }
+
+        h1 {
+            color: #8b3a8f;
+            font-size: 38px;
+            margin: 10px 0;
+        }
+
+        .subtitle {
+            color: #6d416d;
+            font-size: 20px;
+            margin-bottom: 25px;
+        }
+
+        .message-box {
+            background: rgba(255, 255, 255, 0.65);
+            border-radius: 25px;
+            padding: 30px 25px;
+            text-align: left;
+            line-height: 1.8;
+            color: #4d304d;
+            font-size: 17px;
+            box-shadow: 0 5px 20px rgba(120, 70, 130, 0.12);
+        }
+
+        .message-box p {
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            text-align: center;
+            color: #9b3f91;
+            font-size: 25px;
+            font-weight: bold;
+            margin: 25px 0;
+        }
+
+        .end {
+            text-align: center;
+            font-size: 23px;
+            color: #8b3a8f;
+            font-weight: bold;
+            margin-top: 25px;
+        }
+
+        .heart {
+            position: fixed;
+            font-size: 22px;
+            animation: floatUp 5s linear infinite;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.8;
+            }
+
+            100% {
+                transform: translateY(-10vh);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 12px;
+            }
+
+            .container {
+                padding: 25px 15px;
+            }
+
+            .gift {
+                font-size: 65px;
+            }
+
+            h1 {
+                font-size: 30px;
+            }
+
+            .subtitle {
+                font-size: 17px;
+            }
+
+            .message-box {
+                font-size: 15px;
+                line-height: 1.7;
+                padding: 22px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="gift" id="gift" onclick="openGift()">
+    🎁
+    <div class="gift-text">Tap to Open 💝</div>
+</div>
+
+<div id="surpriseContent" class="hidden">
+
+<h1>You Made It! 💝</h1>
+
+        <div class="subtitle">
+            Happiest Birthday Chinnodu 🥹🫶✨
+        </div>
+
+        <div class="message-box">
+
+            <p>
+                Happiest Birthday raa Chinnodu.. 💝🫶
+                 Always keep smiling raa 💖
+                Enjoy your day chinna .. 💓
+            </p>
+
+            <p>
+                Thammudu, you may be younger than me, but the love 💖 I have for you
+                is bigger than anything I can explain✨ Watching you grow up has been
+                one of the most beautiful parts of my life😍.
+            </p>
+
+            <p>
+                We may fight,😺 tease each other, and annoy each other every day😻,
+                but deep inside, you will always be that little boy ❤️ I want to
+                protect from everything✨.
+            </p>
+
+            <p>
+                No matter how old you become or where life takes you💫, remember that
+                I will always be there for you — with a heart full of 💕, a shoulder
+                to lean on☺️, and a hand to hold whenever you need it💝.
+            </p>
+
+            <p>
+                You are not just my brother;you are more than brother to me, you are a piece of my heart❣️.
+                <b>Forever My Thammudu , best supporter to me 💖
+            </p>
+
+            <p>
+                A life may change, we may grow older, and our paths may become
+                different💫, but nothing will ever change the place you have in my
+                heart🩷.
+            </p>
+
+            <p>
+                You are my little troublemaker, my happiness😘, and one of my biggest
+                blessings😍💓.
+            </p>
+
+            <p>
+                I might not always express how much love I have for you🫶💝,
+                but I hope you always know that I will stand beside you through every
+                success✨, every failure, every tear🥹🫂, and every dream💫.
+            </p>
+
+            <p>
+
+              I love you endlessly😘🥹 you are bestest gift too mee 😘🫂
+
+            </p>
+
+            <p>
+                I hope may all your dreams come true 💕. May be I am far to you,
+                but always I stand your side Chinnodu 💫.
+            </p>
+
+            <p>
+                Even small moment with you, it's very special to me raa Chinnodu 💝
+                <b>you are best part of myyy lifee 😘🫂my happiness😘 my world😘🫂
+                    thank you so much raa Chinnodu💫
+</b>
+                </b>
+            </p>
+
+            <p>
+               Naa Bangaram raa nv😘😘🫂
+               Nv mundhu chadhivina vatilo koni memories ni petaledhu  Chinnodu💫
+                 kani niku anni gurthunayi anukuntunaa Chinnodu 💖✨
+            </p>
+
+            <p>
+                Nitho inka chala memories create chesukovali Chinnodu 🫶💓
+                Niitho inka chala time spend cheyali ani vundhi Chinnodu ...💫🥰
+            </p>
+
+            <p>
+                Nv parichayam ayina ee 2 years lo chala jarigayi Chinnodu ..
+                konni bad days alage good days kuda.
+            </p>
+
+            <p>
+                Kani nv avi em alochinchaku. Nii life and career midha focus cheyyi
+                Chinnodu. Niku yeppudu support chesthuney vunttaa Chinnodu ...
+            </p>
+
+            <p>
+                Nikosam chesina ee chinna surprise niku nachuthundhi anukuntunaa
+                Chinnodu 💝.
+                Nii birthday kosam chala cheyali anukuna kani yemi kudharaledhu
+                Chinnodu..
+            </p>
+
+            <p>
+                Konni vishyalo nii midha koppam chupistha. Dhaniki nv em cheyalsinaa
+                avasaram ledhu. Koppam ga vuna ani thelusukoni koncham prema ga
+                matladina chalu naa koppam antha pothundhi.
+            </p>
+
+            <p>
+                Ninnu  dhooram petali ani kadhu raa Chinnodu.
+                Ninnu miss avuthunappudu em cheyalo theyilikaa nii midha koppam
+                chupistha Chinnodu...
+            </p>
+
+            <p>
+                Ninnu chala ebandhi konni vishyaloo ninnu chala ebandhi peduthunaa kadha raa bangaram ....
+                inkaa chala cheppali Chinnodu kani chalu chinna ...😘
+            </p>
+
+            <div class="highlight">
+                Once again Happiest Birthday nanna 🫂😘🎉🎊🥳💐
+                love you so much raa chinnoduuuuuuu ...😘
+                ummmmhhhhaaaaaaaaa bangaram 😘😘🫂
+
+            
+            </div>
+
+            <div class="end">
+                It will be a best birthday to you Chinnodu 💫💝
+            </div>
+
+        </div>
+
+    </div>
+    </div>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+
+            const hearts = ["💖", "💝", "💕", "💗", "✨"];
+            heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
+
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+            document.body.appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 8000);
+        }
+        function openGift() {
+    const gift = document.getElementById("gift");
+    const surprise = document.getElementById("surpriseContent");
+
+    gift.innerHTML = "🎁✨";
+    gift.style.animation = "none";
+
+    setTimeout(() => {
+        gift.style.display = "none";
+        surprise.classList.remove("hidden");
+        surprise.classList.add("reveal");
+    }, 700);
+}
+
+        setInterval(createHeart, 700);
+    </script>
+
+</body>
+</html>
